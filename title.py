@@ -1,17 +1,22 @@
 from bs4 import BeautifulSoup
 import urllib2
 
+def findTitle(url='http://www.baidu.com'):
+
+        try:
+                req = urllib2.Request(url)
+                resp = urllib2.urlopen(req,timeout=5)
+                respHtml = resp.read()
+                soup = BeautifulSoup(respHtml)
+                print url.strip('\n'),soup.title.string
+
+        except Exception,e:
+                return
+
 def main():
-
-    userMainUrl = "http://www.baidu.com"
-    req = urllib2.Request(userMainUrl)
-    resp = urllib2.urlopen(req)
-    respHtml = resp.read()
-    foundLabel = respHtml.findAll("label")
-
-    finalL =foundLabel.string
-
-    print "biaoti=",finalL
+        fo = open('httpre','r')
+        for line in fo:
+                u='http://'+line
+                findTitle(u)
 if __name__=="__main__":
-
-    main();
+        main();
