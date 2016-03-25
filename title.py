@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import urllib2
+import sys
 
 def findTitle(url='http://www.baidu.com'):
 
@@ -14,7 +15,8 @@ def findTitle(url='http://www.baidu.com'):
                 return
 
 def main():
-        fo = open('httpre','r')
+        filename = sys.argv[1]
+        fo = open(filename,'r')
         for line in fo:
                 u='http://'+line
                 findTitle(u)
